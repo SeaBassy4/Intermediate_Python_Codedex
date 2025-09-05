@@ -1,0 +1,16 @@
+liked_songs = {
+  'VVS\n': 'Peso Pluma',
+  'Mi Nuevo Yo\n': 'Natanael Cano',
+  'Mas Altas Que Bajadas\n': 'Natanael Cano',
+  'ROSONES\n': 'Tito Doble P',
+  'Angel Del VIllar\n': 'Virlan Garcia',
+  'SR. SMITH\n': 'Peso Pluma',
+  'LA PATRULLA\n': 'Peso Pluma' 
+}
+def write_liked_songs_to_file(liked_songs, file_name):
+  file = open(file_name, 'w',  encoding='utf-8')
+  lines = liked_songs
+  file.writelines(lines)
+  file.close()
+  
+write_liked_songs_to_file(liked_songs, 'liked_songs.txt')
