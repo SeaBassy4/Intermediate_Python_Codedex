@@ -1,21 +1,20 @@
 import csv
 
-data_to_write = [
-  ['Name', 'Age', 'Grade'],
-  ['Alice', 25, 'A'],
-  ['Bob', 22, 'B'],
-  ['Charlie', 28, 'A+']
-]
+with open('Bestseller - Sheet1.csv', 'r', encoding='utf-8') as file:
+    reader = csv.DictReader(file) 
+    best_book = None
+    best_sales = 0.0
+    
+    for row in reader:
+        sales = float(row['sales in millions'])  
+        if sales > best_sales:
+            best_sales = sales
+            best_book = row
+            
 
-with open('output.csv', 'w+', newline='') as file:
-  
-  csv_writer = csv.writer(file)
-  
-  csv_writer.writerows(data_to_write)
-  
-  csv_reader = csv.reader(file)
-  
-  for row in csv_reader:
-      print(row)
-  
-  file.close()
+with open('bestseller_info.csv', 'w', newline='', encoding='utf-8') as out_file:
+    writer = csv.writer(out_file)
+    
+    writer.writerow(best_book.keys())
+    
+    writer.writerow(best_book.values())
